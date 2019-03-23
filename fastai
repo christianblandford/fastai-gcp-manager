@@ -25,14 +25,22 @@ configure() {
 
 readConfig() {
 . $configFile
-echo Using instance: $instance in zone: $region
+}
+
+getInstanceStatus() {
+	gcloud compute instances describe $instance --zone $region | grep status:
 }
 
 if [ -f $configFile ]
         then readConfig;
 fi
 
-if [ "$command" = "reset" ]
+if [ "$command" = "status" ]; then
+	echo "Contacting instance to get status..."
+	getInstanceStatus;
+elif [ "$command" = "info" ]
+	then echo Using instance: $instance in zone: $region
+elif [ "$command" = "reset" ]
         then rm -rf $configFile
 elif [ "$command" = "config" ]
         then configure;
