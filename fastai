@@ -1,0 +1,48 @@
+
+#!/bin/bash
+
+commandName="fastai"
+configFile=~/.fastai-config
+
+command=$1
+
+if [ "$command" != "config" ] && [ ! -f $configFile ]
+        then echo "Please run '"'"'$commandName config'"'"' before running other commands!" && exit 1
+fi
+
+configure() {
+        echo "Please enter your GCP instance name:"
+        read -p "     Instance Name: " in_instance
+        echo "Please enter your GCP zone:"
+        read -p "     Zone: " in_region
+
+        echo Setting GCP instance to $in_instance in zone $in_region...
+
+        truncate -s 0 $configFile
+        echo 'instance="'"$in_instance"'"' >> $configFile
+        echo 'region="'"$in_region"'"' >> $configFile
+}
+
+readConfig() {
+. $configFile
+echo Using instance: $instance in zone: $region
+}
+
+if [ -f $configFile ]
+        then readConfig;
+fi
+
+if [ "$command" = "reset" ]
+        then rm -rf $configFile
+elif [ "$command" = "config" ]
+        then configure;
+elif [ "$command" = "starti" ]
+        then gcloud compute instances start $instance --zone $region
+elif [ "$command" = "connect" ]
+        then gcloud compute ssh --zone=$region jupyter@$instance -- -L 8080:localhost:8080
+elif [ "$command" = "start" ]
+        then gcloud compute instances start $instance --zone $region && gcloud compute ssh --zone=$region jupyter@$instance -- -L 8080:localhost:8080
+elif [ "$command" = "stop" ]
+        then gcloud compute instances stop $instance --zone $region
+        else echo "Please enter a command. Ex: $commandName start"
+fi
