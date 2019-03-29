@@ -1,7 +1,11 @@
 # fastai-gcp-manager
 A simple GCP management CLI for FastAI training.
 
-**Commands:**
+# Installation:
+* Past the following into your terminal and hit enter: mkdir -p ~/bin/ && curl -o ~/bin/fastai https://raw.githubusercontent.com/christianblandford/fastai-gcp-manager/master/fastai && chmod a+x ~/bin/fastai && source ~/.profile
+
+
+# Commands:
 * fastai *info*
   * Will show the instance/zone if configured
 *fastai *status*
