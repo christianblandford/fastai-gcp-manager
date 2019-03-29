@@ -1,6 +1,8 @@
 # fastai-gcp-manager
 A simple GCP management CLI for FastAI training.
 
+Use this script to easily start, stop, connect, or get information about your GCP instance for fast.ai. This script will only work once you have installed and configured your GCP instance using the instructions found here: https://course.fast.ai/start_gcp.html
+
 # Installation:
 * Paste the following into your terminal and hit enter: `mkdir -p ~/bin/ && curl -o ~/bin/fastai https://raw.githubusercontent.com/christianblandford/fastai-gcp-manager/master/fastai && chmod a+x ~/bin/fastai && source ~/.profile`
 * Run `fastai config` to configure your instance
