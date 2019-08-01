@@ -7,6 +7,7 @@ A simple one line command `fastai start` connects to your instance instantly:
 ![Screenshot of the program running](https://raw.githubusercontent.com/christianblandford/fastai-gcp-manager/master/fastai-manager-screenshot.PNG)
 
 # Installation:
+* Install and configure GCP CLI following the instructions [here](https://course.fast.ai/start_gcp.html)
 * Paste the following into your terminal and hit enter: `mkdir -p ~/bin/ && curl -k -L -o ~/bin/fastai https://raw.githubusercontent.com/christianblandford/fastai-gcp-manager/master/fastai && chmod a+x ~/bin/fastai && source ~/.profile`
 * Run `fastai config` to configure your instance
 
